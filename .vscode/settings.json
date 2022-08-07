@@ -1,0 +1,9 @@
+{
+    "search.exclude": {
+        "**/build": true
+    },
+    "files.exclude": {
+        "**/.ice": true,
+        "**/.vscode": true
+    }
+}
