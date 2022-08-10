@@ -4,7 +4,7 @@ import moment from 'moment';
 export default {
   async queryDanmu(params) {
     const data = await request({
-      url: 'http://localhost:8090/query/danm',
+      url: 'http://114.116.43.187:8090/query/danm',
       method: 'POST',
       data: params,
     });
@@ -18,7 +18,7 @@ export default {
   },
   async queryUser(params) {
     const data = await request({
-      url: 'http://localhost:8090/manager/getRomeInfo',
+      url: 'http://114.116.43.187:8090/manager/getRomeInfo',
       method: 'POST',
       data: params,
     });
@@ -33,7 +33,7 @@ export default {
   },
   async queryNickName(params) {
     const data = await request({
-      url: 'http://localhost:8090/manager/nickName',
+      url: 'http://114.116.43.187:8090/manager/nickName',
       method: 'POST',
       data: params,
     });
@@ -48,7 +48,7 @@ export default {
   },
   async reboot() {
     await request({
-      url: 'http://localhost:8090/reboot',
+      url: 'http://114.116.43.187:8090/reboot',
       method: 'GET',
     });
   },
