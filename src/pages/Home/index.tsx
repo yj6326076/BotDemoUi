@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useRequest } from 'ice';
 import { Table, Button, Card, Form, Row, Col, Input, Pagination } from 'antd';
 import { useAntdTable, useSetState } from 'ahooks';
-import styles from './index.module.less';
+import styles from './index.module.css';
 import repo from './services/repo';
 
 export default function Home() {
