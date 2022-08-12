@@ -1,10 +1,14 @@
 import React, { useCallback } from 'react';
 import { Button, Select, Input, Form, Table, Card, DatePicker, Pagination, Row, Col } from 'antd';
 import { useAntdTable, useSetState } from 'ahooks';
+import { config } from 'ice';
+import queryString from 'query-string';
+import { DownloadOutlined } from '@ant-design/icons';
 import repo from '@/pages/Home/services/repo';
 
 import styles from './index.module.less';
 import { any } from 'prop-types';
+import { Link } from 'react-router-dom';
 
 const FormItem = Form.Item;
 const { RangePicker } = DatePicker;
@@ -95,13 +99,10 @@ const MultiColFilterTable: React.FC = () => {
   const { submit, reset } = search;
   const { columnWidth } = state;
 
-  const handleSetExpand = useCallback(() => {
-    const nextExpand = !state.expandStatus;
-    setState({
-      expandStatus: nextExpand,
-      actionListSpan: getNextActionListSpan(nextExpand),
-    });
-  }, [state, setState]);
+  const exportDamu = () => {
+    const w = window.open('about:blank');
+    w.location.href = `//${config.domain}/exportDanm?${queryString.stringify(form.getFieldsValue())}`;
+  };
   const formLayout = {
     labelCol: { span: 4 },
     wrapperCol: { span: 20 },
@@ -133,6 +134,9 @@ const MultiColFilterTable: React.FC = () => {
                 </Button>
                 <Button onClick={reset} style={{ marginRight: 10 }}>
                   重置
+                </Button>
+                <Button onClick={exportDamu} type="primary" shape="round" icon={<DownloadOutlined />} style={{ marginRight: 10 }} target="_blank" >
+                  导出
                 </Button>
               </FormItem>
             </Col>

@@ -1,10 +1,11 @@
-import { request } from 'ice';
+import { request, config } from 'ice';
 import moment from 'moment';
+import React from 'react';
 
 export default {
   async queryDanmu(params) {
     const data = await request({
-      url: 'http://114.116.43.187:8090/query/danm',
+      url: `//${config.domain}/query/danm`,
       method: 'POST',
       data: params,
     });
@@ -16,9 +17,16 @@ export default {
       list: data.content,
     };
   },
+  async exportDanmu(params) {
+    await request({
+      url: `//${config.domain}/exportDanm`,
+      method: 'GET',
+      params,
+    });
+  },
   async queryUser(params) {
     const data = await request({
-      url: 'http://114.116.43.187:8090/manager/getRomeInfo',
+      url: `//${config.domain}/manager/getRomeInfo`,
       method: 'POST',
       data: params,
     });
@@ -33,7 +41,7 @@ export default {
   },
   async queryNickName(params) {
     const data = await request({
-      url: 'http://114.116.43.187:8090/manager/nickName',
+      url: `//${config.domain}/manager/nickName`,
       method: 'POST',
       data: params,
     });
@@ -48,7 +56,7 @@ export default {
   },
   async reboot() {
     await request({
-      url: 'http://114.116.43.187:8090/reboot',
+      url: `//${config.domain}/reboot`,
       method: 'GET',
     });
   },
