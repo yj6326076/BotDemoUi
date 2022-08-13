@@ -1,6 +1,5 @@
 import { request, config } from 'ice';
 import moment from 'moment';
-import React from 'react';
 
 export default {
   async queryDanmu(params) {

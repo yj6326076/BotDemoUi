@@ -5,10 +5,9 @@ import { config } from 'ice';
 import queryString from 'query-string';
 import { DownloadOutlined } from '@ant-design/icons';
 import repo from '@/pages/Home/services/repo';
+import moment from 'moment';
 
 import styles from './index.module.less';
-import { any } from 'prop-types';
-import { Link } from 'react-router-dom';
 
 const FormItem = Form.Item;
 const { RangePicker } = DatePicker;
@@ -100,8 +99,29 @@ const MultiColFilterTable: React.FC = () => {
   const { columnWidth } = state;
 
   const exportDamu = () => {
+    const formData = form.getFieldsValue();
+    const data = {
+      beginDate: null,
+      endDate: null,
+      name: null,
+      senderId: null,
+    };
+    const { time } = formData;
+    if (time && time.length === 2) {
+      data.beginDate = time[0];
+      data.endDate = time[1];
+    }
+    const { name } = formData;
+    if (name) {
+      data.name = name;
+    }
+    const { senderId } = formData;
+    if (senderId) {
+      data.senderId = senderId;
+    }
+    console.log(form.getFieldsValue());
     const w = window.open('about:blank');
-    w.location.href = `//${config.domain}/exportDanm?${queryString.stringify(form.getFieldsValue())}`;
+    w.location.href = `//${config.domain}/exportDanm?${queryString.stringify(data)}`;
   };
   const formLayout = {
     labelCol: { span: 4 },
