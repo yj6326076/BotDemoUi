@@ -92,7 +92,7 @@ export default function Home() {
             重启
           </Button>
         </div>
-        <Table {...tableProps} rowKey="id">
+        <Table {...tableProps} pagination={false} rowKey="id">
           <Table.Column title="用户id" dataIndex="userId" />
           <Table.Column title="类型" dataIndex="type" />
           <Table.Column title="角色" dataIndex="roleType" />

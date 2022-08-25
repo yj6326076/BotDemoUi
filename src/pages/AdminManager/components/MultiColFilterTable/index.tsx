@@ -1,13 +1,15 @@
 import React, { useCallback } from 'react';
-import { Button, Select, Input, Form, Table, Card, DatePicker, Pagination, Row, Col } from 'antd';
+import { Button, Select, Input, Form, Table, Card, DatePicker, Pagination, Row, Col, ConfigProvider } from 'antd';
 import { useAntdTable, useSetState } from 'ahooks';
 import { config } from 'ice';
 import queryString from 'query-string';
 import { DownloadOutlined } from '@ant-design/icons';
 import repo from '@/pages/Home/services/repo';
-import moment from 'moment';
+import zhCN from 'antd/es/locale/zh_CN';
+import 'moment/locale/zh-cn';
 
 import styles from './index.module.less';
+import moment from 'moment';
 
 const FormItem = Form.Item;
 const { RangePicker } = DatePicker;
@@ -86,6 +88,7 @@ const getNextActionListSpan = (expandStatus: boolean): number => {
 };
 
 const MultiColFilterTable: React.FC = () => {
+  moment.locale('zh-cn');
   const [state, setState] = useSetState<MultiColState>({
     columnWidth: defaultColumnWidth,
     expandStatus: defaultExpandStatus,
@@ -130,38 +133,47 @@ const MultiColFilterTable: React.FC = () => {
   return (
     <div className={styles.container}>
       <Card>
-        <Form className="filter-form" labelAlign="right" form={form} layout="vertical">
-          <Row>
-            <Col span={6}>
-              <FormItem label="斗鱼昵称:" {...formLayout} name="name">
-                <Input />
-              </FormItem>
-            </Col>
-            <Col span={6}>
-              <FormItem label="用户id:" {...formLayout} name="id">
-                <Input />
-              </FormItem>
-            </Col>
-            <Col span={8}>
-              <FormItem label="时间:" {...formLayout} name="time">
-                <RangePicker showTime />
-              </FormItem>
-            </Col>
-            <Col span={state.actionListSpan === 9 ? 16 : 4}>
-              <FormItem className={styles['form-actions']} label=" ">
-                <Button type="primary" onClick={submit} style={{ marginRight: 10 }} htmlType="submit">
-                  提交
-                </Button>
-                <Button onClick={reset} style={{ marginRight: 10 }}>
-                  重置
-                </Button>
-                <Button onClick={exportDamu} type="primary" shape="round" icon={<DownloadOutlined />} style={{ marginRight: 10 }} target="_blank" >
-                  导出
-                </Button>
-              </FormItem>
-            </Col>
-          </Row>
-        </Form>
+        <ConfigProvider locale={zhCN}>
+          <Form className="filter-form" labelAlign="right" form={form} layout="vertical">
+            <Row>
+              <Col span={6}>
+                <FormItem label="斗鱼昵称:" {...formLayout} name="name">
+                  <Input />
+                </FormItem>
+              </Col>
+              <Col span={6}>
+                <FormItem label="用户id:" {...formLayout} name="id">
+                  <Input />
+                </FormItem>
+              </Col>
+              <Col span={8}>
+                <FormItem label="时间:" {...formLayout} name="time">
+                  <RangePicker showTime />
+                </FormItem>
+              </Col>
+              <Col span={state.actionListSpan === 9 ? 16 : 4}>
+                <FormItem className={styles['form-actions']} label=" ">
+                  <Button type="primary" onClick={submit} style={{ marginRight: 10 }} htmlType="submit">
+                    提交
+                  </Button>
+                  <Button onClick={reset} style={{ marginRight: 10 }}>
+                    重置
+                  </Button>
+                  <Button
+                    onClick={exportDamu}
+                    type="primary"
+                    shape="round"
+                    icon={<DownloadOutlined />}
+                    style={{ marginRight: 10 }}
+                    target="_blank"
+                  >
+                    导出
+                  </Button>
+                </FormItem>
+              </Col>
+            </Row>
+          </Form>
+        </ConfigProvider>
       </Card>
       <Card>
         <Table {...tableProps} pagination={false} rowKey="id">

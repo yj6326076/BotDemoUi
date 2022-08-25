@@ -62,13 +62,13 @@ export default function Dashboard() {
         </Form>
       </Card>
       <Card>
-        <Table {...tableProps} rowKey="id">
+        <Table {...tableProps} pagination={false} rowKey="id">
           <Table.Column title="别名" dataIndex="nickname" />
           <Table.Column title="房间号" dataIndex="romeId" />
           <Table.Column title="房间类型" dataIndex="romeType" />
           <Table.Column title="创建时间" dataIndex="creatDate" />
           <Table.Column title="更新时间" dataIndex="lastUpdateDate" />
-        </Table>
+        </Table>.
         <Pagination
           style={{ marginTop: 16, textAlign: 'right' }}
           showTotal={(total) => (
