@@ -1,4 +1,4 @@
-import { SmileOutlined, HeartOutlined, RadarChartOutlined, SettingOutlined } from '@ant-design/icons';
+import { SmileOutlined, HeartOutlined, RadarChartOutlined, SettingOutlined, AudioOutlined } from '@ant-design/icons';
 
 const asideMenuConfig = [
   {
@@ -15,6 +15,11 @@ const asideMenuConfig = [
     name: '弹幕',
     path: '/admin',
     icon: RadarChartOutlined,
+  },
+  {
+    name: '点歌平台',
+    path: '/songList',
+    icon: AudioOutlined,
   },
   {
     name: '404',

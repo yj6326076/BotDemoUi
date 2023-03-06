@@ -1,12 +1,11 @@
-import React, { useCallback } from 'react';
-import { Button, Select, Input, Form, Table, Card, DatePicker, Pagination, Row, Col, ConfigProvider } from 'antd';
+import React from 'react';
+import { Button, Input, Form, Table, Card, DatePicker, Pagination, Row, Col, ConfigProvider } from 'antd';
 import { useAntdTable, useSetState } from 'ahooks';
 import { config } from 'ice';
 import queryString from 'query-string';
 import { DownloadOutlined } from '@ant-design/icons';
 import repo from '@/pages/Home/services/repo';
 import zhCN from 'antd/es/locale/zh_CN';
-import 'moment/locale/zh-cn';
 
 import styles from './index.module.less';
 import moment from 'moment';
